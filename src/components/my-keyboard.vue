@@ -1,10 +1,9 @@
 <template>
   <div class="keyboard_wrapp">
-    <div class="keyboard_keys">
-      <!-- Row 1 -->
-      <div class="row">
+    <div v-for="row in keyboard" :key="row.id" class="keyboard_keys">
+      <div v-for="key in row" :key="key.id" class="row">
         <keyboard-keys
-          v-for="myKey in row1"
+          v-for="myKey in key"
           :key="myKey.id"
           :main-key="myKey.mainkey"
           :sub-key="myKey.subkey"
@@ -12,174 +11,91 @@
         >
         </keyboard-keys>
       </div>
-
-      <div class="row">
-        <div class="keys tab_key">Tab</div>
-        <div class="keys">
-          <span class="mainkey">ق</span>
-          <!-- <sub class="subkeys">ظ</sub> -->
-        </div>
-        <div class="keys">
-          <span class="mainkey">و</span>
-          <!-- <sub class="subkeys">ض</sub> -->
-        </div>
-        <div class="keys">
-          <span class="mainkey"> ع</span>
-          <!-- <sub class="subkeys">ذ</sub> -->
-        </div>
-        <div class="keys">
-          <span class="mainkey">ر</span>
-          <sub class="subkeys">ڑ</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">ت</span>
-          <sub class="subkeys">ٹ</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">ے</span>
-          <!-- <sub class="subkeys">ّ</sub> -->
-        </div>
-        <div class="keys">
-          <span class="mainkey">ء</span>
-          <sub class="subkeys">ئ</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">ی</span>
-          <!-- <sub class="subkeys">ـ</sub> -->
-        </div>
-        <div class="keys">
-          <span class="mainkey">ہ</span>
-          <!-- <sub class="subkeys">چ</sub> -->
-        </div>
-        <div class="keys">
-          <span class="mainkey">پ</span>
-          <!-- <sub class="subkeys">خ</sub> -->
-        </div>
-        <div class="keys">
-          <span class="mainkey"></span>
-          <sub class="subkeys"></sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey"></span>
-          <sub class="subkeys"></sub>
-        </div>
-        <div class="keys slash_key">
-          <span class="mainkey"></span>
-          <sub class="subkeys"></sub>
-        </div>
-      </div>
-      <div class="row">
-        <div class="keys caps_lock_key">Caps Lock</div>
-        <div class="keys">
-          <span class="mainkey">ا</span>
-          <sub class="subkeys">آ</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">س</span>
-          <sub class="subkeys">ص</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">د</span>
-          <sub class="subkeys">ڈ</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">ف</span>
-          <!-- <sub class="subkeys">"</sub> -->
-        </div>
-        <div class="keys">
-          <span class="mainkey">گ</span>
-          <sub class="subkeys">غ</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">ھ</span>
-          <sub class="subkeys">ح</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">ج</span>
-          <sub class="subkeys">ض</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">ک</span>
-          <sub class="subkeys">خ</sub>
-        </div>
-
-        <div class="keys">
-          <span class="mainkey">ل</span>
-          <!-- <sub class="subkeys">گ</sub> -->
-        </div>
-        <div class="keys">
-          <span class="mainkey">؛</span>
-          <sub class="subkeys">:</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">’</span>
-          <sub class="subkeys">”</sub>
-        </div>
-
-        <div class="keys enter_key">Enter</div>
-      </div>
-      <div class="row">
-        <div class="keys shift_key shift_left">Shift</div>
-        <div class="keys">
-          <span class="mainkey">ز</span>
-          <sub class="subkeys">ذ</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">ش</span>
-          <sub class="subkeys">ژ</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">چ</span>
-          <sub class="subkeys">ث</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">ط</span>
-          <sub class="subkeys">ظ</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">ب</span>
-        </div>
-        <div class="keys">
-          <span class="mainkey">ن</span>
-          <sub class="subkeys">ں</sub>
-        </div>
-        <div class="keys">
-          <span class="mainkey">م</span>
-        </div>
-        <div class="keys">
-          <span class="mainkey">،</span>
-          <!-- <sub class="subkeys"> &lt </sub> -->
-        </div>
-        <div class="keys">
-          <span class="mainkey">۔</span>
-          <!-- <sub class="subkeys"> &gt </sub> -->
-        </div>
-        <div class="keys">
-          <span class="mainkey"></span>
-          <sub class="subkeys"> ؟ </sub>
-        </div>
-
-        <div class="keys shift_key shift_right">Shift</div>
-      </div>
-      <div class="row">
-        <div class="keys ctrl_key ctrl_left">Ctrl</div>
-        <div class="keys win_key">Win</div>
-        <div class="keys alt_key alt_left">Alt</div>
-        <div class="keys space_key"></div>
-        <div class="keys alt_key alt_right">Alt</div>
-        <div class="keys">Fn</div>
-        <div class="keys ctrl_key ctrl_right">Ctrl</div>
-      </div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  // props: ["name", "phoneNumber", "isFavorite"],
-
   data() {
     return {
+      keyboard: [
+        {
+          row1: [
+            { mainkey: "`", subkey: "", cls: "keys" },
+            { mainkey: "1", subkey: "", cls: "keys" },
+            { mainkey: "2", subkey: "", cls: "keys" },
+            { mainkey: "3", subkey: "", cls: "keys" },
+            { mainkey: "4", subkey: "", cls: "keys" },
+            { mainkey: "5", subkey: "", cls: "keys" },
+            { mainkey: "6", subkey: "", cls: "keys" },
+            { mainkey: "7", subkey: "", cls: "keys" },
+            { mainkey: "8", subkey: "", cls: "keys" },
+            { mainkey: "9", subkey: "(", cls: "keys" },
+            { mainkey: "0", subkey: ")", cls: "keys" },
+            { mainkey: "-", subkey: "", cls: "keys" },
+            { mainkey: "=", subkey: "", cls: "keys" },
+            { mainkey: "backspace", subkey: "", cls: "keys backspace_key" },
+          ],
+
+          row2: [
+            { mainkey: "Tab", subkey: "", cls: "keys tab_key" },
+            { mainkey: "ق", subkey: "", cls: "keys" },
+            { mainkey: "و", subkey: "", cls: "keys" },
+            { mainkey: "ع", subkey: "", cls: "keys" },
+            { mainkey: "ر", subkey: "ڑ", cls: "keys" },
+            { mainkey: "ت", subkey: "ٹ", cls: "keys" },
+            { mainkey: "ے", subkey: "", cls: "keys" },
+            { mainkey: "ء", subkey: "ئ", cls: "keys" },
+            { mainkey: "ی", subkey: "", cls: "keys" },
+            { mainkey: "ہ", subkey: "", cls: "keys" },
+            { mainkey: "پ", subkey: "", cls: "keys" },
+            { mainkey: "", subkey: "", cls: "keys" },
+            { mainkey: "", subkey: "", cls: "keys" },
+            { mainkey: "", subkey: "", cls: "keys slash_key" },
+          ],
+          row3: [
+            { mainkey: "Caps Lock", subkey: "", cls: "keys caps_lock_key" },
+            { mainkey: "ا", subkey: "آ", cls: "keys" },
+            { mainkey: "س", subkey: "ص", cls: "keys" },
+            { mainkey: "د", subkey: "ڈ", cls: "keys" },
+            { mainkey: "ف", subkey: "", cls: "keys" },
+            { mainkey: "گ", subkey: "غ", cls: "keys" },
+            { mainkey: "ھ", subkey: "ح", cls: "keys" },
+            { mainkey: "ج", subkey: "ض", cls: "keys" },
+            { mainkey: "ک", subkey: "خ", cls: "keys" },
+            { mainkey: "ہ", subkey: "", cls: "keys" },
+            { mainkey: "ل ", subkey: "", cls: "keys" },
+            { mainkey: "؛", subkey: ":", cls: "keys" },
+            { mainkey: "’", subkey: "”", cls: "keys" },
+            { mainkey: "Enter", subkey: "", cls: "keys enter_key" },
+          ],
+          row4: [
+            { mainkey: "Shift", subkey: "", cls: "keys shift_key" },
+            { mainkey: "ز", subkey: "ذ", cls: "keys" },
+            { mainkey: "ش", subkey: "ژ", cls: "keys" },
+            { mainkey: "چ", subkey: "ث", cls: "keys" },
+            { mainkey: "ط", subkey: "ظ", cls: "keys" },
+            { mainkey: "ب", subkey: "غ", cls: "keys" },
+            { mainkey: "ن", subkey: "ں", cls: "keys" },
+            { mainkey: "م", subkey: "", cls: "keys" },
+            { mainkey: "،", subkey: "", cls: "keys" },
+            { mainkey: "۔", subkey: "", cls: "keys" },
+            { mainkey: " ", subkey: "؟", cls: "keys" },
+            { mainkey: "Shift", subkey: "", cls: "keys shift_key" },
+          ],
+          row5: [
+            { mainkey: "Ctrl", subkey: "", cls: "keys ctrl_key ctrl_left" },
+            { mainkey: "Win", subkey: "", cls: "keys win_key" },
+            { mainkey: "Alt", subkey: "", cls: "keys alt_key alt_left" },
+            { mainkey: "", subkey: "", cls: "keys space_key" },
+            { mainkey: "Alt", subkey: "", cls: "keys alt_key alt_right" },
+            { mainkey: "Fn", subkey: "", cls: "keys" },
+            { mainkey: "Ctrl", subkey: "", cls: "keys ctrl_key ctrl_right" },
+          ],
+        },
+      ],
+
       row1: [
         { mainkey: "`", subkey: "", cls: "keys" },
         { mainkey: "1", subkey: "", cls: "keys" },
@@ -195,6 +111,62 @@ export default {
         { mainkey: "-", subkey: "", cls: "keys" },
         { mainkey: "=", subkey: "", cls: "keys" },
         { mainkey: "backspace", subkey: "", cls: "keys backspace_key" },
+      ],
+
+      row2: [
+        { mainkey: "Tab", subkey: "", cls: "keys tab_key" },
+        { mainkey: "ق", subkey: "", cls: "keys" },
+        { mainkey: "و", subkey: "", cls: "keys" },
+        { mainkey: "ع", subkey: "", cls: "keys" },
+        { mainkey: "ر", subkey: "ڑ", cls: "keys" },
+        { mainkey: "ت", subkey: "ٹ", cls: "keys" },
+        { mainkey: "ے", subkey: "", cls: "keys" },
+        { mainkey: "ء", subkey: "ئ", cls: "keys" },
+        { mainkey: "ی", subkey: "", cls: "keys" },
+        { mainkey: "ہ", subkey: "", cls: "keys" },
+        { mainkey: "پ", subkey: "", cls: "keys" },
+        { mainkey: "", subkey: "", cls: "keys" },
+        { mainkey: "", subkey: "", cls: "keys" },
+        { mainkey: "", subkey: "", cls: "keys slash_key" },
+      ],
+      row3: [
+        { mainkey: "Caps Lock", subkey: "", cls: "keys caps_lock_key" },
+        { mainkey: "ا", subkey: "آ", cls: "keys" },
+        { mainkey: "س", subkey: "ص", cls: "keys" },
+        { mainkey: "د", subkey: "ڈ", cls: "keys" },
+        { mainkey: "ف", subkey: "", cls: "keys" },
+        { mainkey: "گ", subkey: "غ", cls: "keys" },
+        { mainkey: "ھ", subkey: "ح", cls: "keys" },
+        { mainkey: "ج", subkey: "ض", cls: "keys" },
+        { mainkey: "ک", subkey: "خ", cls: "keys" },
+        { mainkey: "ہ", subkey: "", cls: "keys" },
+        { mainkey: "ل ", subkey: "", cls: "keys" },
+        { mainkey: "؛", subkey: ":", cls: "keys" },
+        { mainkey: "’", subkey: "”", cls: "keys" },
+        { mainkey: "Enter", subkey: "", cls: "keys enter_key" },
+      ],
+      row4: [
+        { mainkey: "Shift", subkey: "", cls: "keys shift_key" },
+        { mainkey: "ز", subkey: "ذ", cls: "keys" },
+        { mainkey: "ش", subkey: "ژ", cls: "keys" },
+        { mainkey: "چ", subkey: "ث", cls: "keys" },
+        { mainkey: "ط", subkey: "ظ", cls: "keys" },
+        { mainkey: "ب", subkey: "غ", cls: "keys" },
+        { mainkey: "ن", subkey: "ں", cls: "keys" },
+        { mainkey: "م", subkey: "", cls: "keys" },
+        { mainkey: "،", subkey: "", cls: "keys" },
+        { mainkey: "۔", subkey: "", cls: "keys" },
+        { mainkey: " ", subkey: "؟", cls: "keys" },
+        { mainkey: "Shift", subkey: "", cls: "keys shift_key" },
+      ],
+      row5: [
+        { mainkey: "Ctrl", subkey: "", cls: "keys ctrl_key ctrl_left" },
+        { mainkey: "Win", subkey: "", cls: "keys win_key" },
+        { mainkey: "Alt", subkey: "", cls: "keys alt_key alt_left" },
+        { mainkey: "", subkey: "", cls: "keys space_key" },
+        { mainkey: "Alt", subkey: "", cls: "keys alt_key alt_right" },
+        { mainkey: "Fn", subkey: "", cls: "keys" },
+        { mainkey: "Ctrl", subkey: "", cls: "keys ctrl_key ctrl_right" },
       ],
     };
   },
