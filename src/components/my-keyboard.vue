@@ -124,7 +124,7 @@ export default {
         { mainkey: "ء", subkey: "ئ", cls: "keys" },
         { mainkey: "ی", subkey: "", cls: "keys" },
         { mainkey: "ہ", subkey: "", cls: "keys" },
-        { mainkey: "پ", subkey: "", cls: "keys" },
+        { mainkey: "پ", subkey: " ُ", cls: "keys" },
         { mainkey: "", subkey: "", cls: "keys" },
         { mainkey: "", subkey: "", cls: "keys" },
         { mainkey: "", subkey: "", cls: "keys slash_key" },
@@ -156,7 +156,7 @@ export default {
         { mainkey: "م", subkey: "", cls: "keys" },
         { mainkey: "،", subkey: "", cls: "keys" },
         { mainkey: "۔", subkey: "", cls: "keys" },
-        { mainkey: " ", subkey: "؟", cls: "keys" },
+        { mainkey: "/", subkey: "؟", cls: "keys" },
         { mainkey: "Shift", subkey: "", cls: "keys shift_key" },
       ],
       row5: [
