@@ -502,3 +502,5 @@ const keys = [
         ur: 'QUOT'
     }
 ]
+
+export default keys;
