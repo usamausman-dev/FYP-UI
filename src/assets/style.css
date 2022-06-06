@@ -7,14 +7,14 @@
 }
 
 
-.container {
+/* .container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     flex-direction: column;
     margin: 0 10px;
-}
+} */
 
 .keyboard_wrapp {
     max-width: 1008px;
@@ -26,7 +26,7 @@
     order: 2;
 }
 
-.row {
+.myrow {
     display: flex;
 }
 
@@ -73,7 +73,7 @@
     width: 100%;
 }
 
-.text {
+/* .text {
     max-width: 1008px;
     width: 100%;
     height: auto;
@@ -86,8 +86,15 @@
     padding-right: 10px;
     transition: .2s;
     font-family: 'Noto Nastaliq Urdu';
+} */
+
+.text {
+    transition: .2s;
+    font-family: 'Noto Nastaliq Urdu';
 
 }
+
+
 
 .keys.active {
     background-color: #333;
@@ -215,3 +222,46 @@ sub {
     margin-left: 1em;
     color: red;
 }
+
+
+.dropbtn {
+    background-color: transparent;
+    color: red;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    margin-top: 10%;
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* .dropdown:hover .dropbtn {
+    background-color: #3e8e41;
+} */

@@ -1,7 +1,7 @@
 <template>
   <div class="keyboard_wrapp">
     <div v-for="row in keyboard" :key="row.id" class="keyboard_keys">
-      <div v-for="key in row" :key="key.id" class="row">
+      <div v-for="key in row" :key="key.id" class="myrow">
         <keyboard-keys
           v-for="myKey in key"
           :key="myKey.id"
@@ -64,7 +64,7 @@ export default {
             { mainkey: "ھ", subkey: "ح", cls: "keys" },
             { mainkey: "ج", subkey: "ض", cls: "keys" },
             { mainkey: "ک", subkey: "خ", cls: "keys" },
-            { mainkey: "ہ", subkey: "", cls: "keys" },
+            // { mainkey: "ہ", subkey: "", cls: "keys" },
             { mainkey: "ل ", subkey: "", cls: "keys" },
             { mainkey: "؛", subkey: ":", cls: "keys" },
             { mainkey: "’", subkey: "”", cls: "keys" },
@@ -76,7 +76,7 @@ export default {
             { mainkey: "ش", subkey: "ژ", cls: "keys" },
             { mainkey: "چ", subkey: "ث", cls: "keys" },
             { mainkey: "ط", subkey: "ظ", cls: "keys" },
-            { mainkey: "ب", subkey: "غ", cls: "keys" },
+            { mainkey: "ب", subkey: "", cls: "keys" },
             { mainkey: "ن", subkey: "ں", cls: "keys" },
             { mainkey: "م", subkey: "", cls: "keys" },
             { mainkey: "،", subkey: "", cls: "keys" },
