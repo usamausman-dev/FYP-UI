@@ -41,13 +41,13 @@
                   {{ this.res[0][word].current_word + " " }}
                 </button>
                 <div class="dropdown-content">
-                  <button class="btn">
+                  <button class="btn" @click="replaceWords">
                     {{ this.res[0][word].close_matches[0] }}
                   </button>
-                  <button class="btn">
+                  <button class="btn" @click="replaceWords">
                     {{ this.res[0][word].close_matches[1] }}
                   </button>
-                  <button class="btn">
+                  <button class="btn" @click="replaceWords">
                     {{ this.res[0][word].close_matches[2] }}
                   </button>
                 </div>
@@ -139,7 +139,9 @@ export default {
     },
 
     replaceWords(e) {
-      console.log(e);
+      var tagParent = e.target.parentNode.parentNode.parentNode;
+      var dataChange = e.target.innerText + " ";
+      tagParent.replaceWith(dataChange);
     },
   },
   computed: {},
