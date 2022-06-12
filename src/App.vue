@@ -28,29 +28,34 @@
           v-for="words in inputSen"
           :key="words.id"
         >
-          <span v-for="letters in words" :key="letters.id">
+          <span v-for="word in words" :key="word.id">
             <span
-              v-if="Object.keys(this.res[0]).includes(letters)"
+              v-if="
+                Object.keys(this.res[0]).includes(word) &&
+                this.res[0][word].status == 'WRONG'
+              "
               style="color: red"
             >
               <div class="dropdown">
-                <button class="dropbtn">{{ letters + " " }}</button>
+                <button class="dropbtn">
+                  {{ this.res[0][word].current_word + " " }}
+                </button>
                 <div class="dropdown-content">
-                  <button
-                    onclick="console.log(this.parentNode.parentNode)"
-                    class="btn"
-                  >
-                    Option 1
+                  <button class="btn">
+                    {{ this.res[0][word].close_matches[0] }}
                   </button>
-
-                  <button class="btn">Option 2</button>
-                  <button class="btn">Option 3</button>
+                  <button class="btn">
+                    {{ this.res[0][word].close_matches[1] }}
+                  </button>
+                  <button class="btn">
+                    {{ this.res[0][word].close_matches[2] }}
+                  </button>
                 </div>
               </div>
             </span>
 
             <span v-else>
-              {{ letters + " " }}
+              {{ word + " " }}
             </span>
           </span>
         </p>
@@ -99,7 +104,7 @@ export default {
           predicted_word: "معاوضے",
           close_matches: ["کام", "نجم", "نان"],
           resultSuggest: ["کام", "نجم", "فام", "نان"],
-          status: "WRONG",
+          status: "CORRECT  ",
         },
         اسامہ: {
           current_word: "اسامہ",
@@ -130,82 +135,12 @@ export default {
         },
       };
 
-      // Removing the correct Words so that incorrect could be checked
-      Object.keys(arrObj).map(
-        (k) => arrObj[k].status == "CORRECT" && delete arrObj[k]
-      );
-
       this.res.push(arrObj);
     },
 
-    // check() {
-    //   var input = document.getElementById("txtBox2").value;
-    //   var arrObj = {
-    //     نام: {
-    //       current_word: "نام",
-    //       predicted_word: "معاوضے",
-    //       close_matches: ["کام", "نجم", "نان"],
-    //       resultSuggest: ["کام", "نجم", "فام", "نان"],
-    //       status: "WRONG",
-    //     },
-    //     اسامہ: {
-    //       current_word: "اسامہ",
-    //       predicted_word: "عرفات",
-    //       close_matches: ["اسلام", "سام", "پانامہ"],
-    //       resultSuggest: [
-    //         "ارام",
-    //         "اضافہ",
-    //         "اسلم",
-    //         "ادارہ",
-    //         "ڈرامہ",
-    //         "سادہ",
-    //         "افسانہ",
-    //         "خسارہ",
-    //         "اسلام",
-    //         "سام",
-    //         "نامہ",
-    //         "اشارہ",
-    //         "اگاہ",
-    //         "پانامہ",
-    //         "علامہ",
-    //         "سایہ",
-    //         "بسمہ",
-    //         "اسانی",
-    //         "5سالہ",
-    //       ],
-    //       status: "WRONG",
-    //     },
-    //   };
-
-    //   // Removing the correct Words so that incorrect could be checked
-    //   Object.keys(arrObj).map(
-    //     (k) => arrObj[k].status == "CORRECT" && delete arrObj[k]
-    //   );
-
-    //   Object.keys(arrObj).forEach((element) => {
-    //     var res = input.includes(element);
-    //     if (res) {
-    //       input = input.replace(
-    //         element,
-
-    //         // `<div><word-correction></word-correction></div>`
-
-    //         `<div class="dropdown">
-    //             <button class="dropbtn">${element}</button>
-    //             <div class="dropdown-content">
-
-    //             <button onclick="console.log(this.parentNode.parentNode)" class="btn">${arrObj[element].close_matches[0]}</button>
-    //             <button class="btn">${arrObj[element].close_matches[1]}</button>
-    //             <button class="btn">${arrObj[element].close_matches[2]}</button>
-
-    //             </div>
-    //           </div>`
-    //       );
-    //       document.getElementById("outputValue").innerHTML = input;
-    //       // this.myWords();
-    //     }
-    //   });
-    // },
+    replaceWords(e) {
+      console.log(e);
+    },
   },
   computed: {},
 };
