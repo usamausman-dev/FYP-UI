@@ -71,6 +71,7 @@
 
 <script>
 import keys from "./consts/keys";
+import axios from "axios";
 
 export default {
   data() {
@@ -96,46 +97,62 @@ export default {
 
     check() {
       var input = document.getElementById("txtBox2").value;
-      this.inputSen.push(input.split(" "));
+      // this.inputSen.push(input.split(" "));
 
-      var arrObj = {
-        نام: {
-          current_word: "نام",
-          predicted_word: "معاوضے",
-          close_matches: ["کام", "نجم", "نان"],
-          resultSuggest: ["کام", "نجم", "فام", "نان"],
-          status: "CORRECT  ",
-        },
-        اسامہ: {
-          current_word: "اسامہ",
-          predicted_word: "عرفات",
-          close_matches: ["اسلام", "سام", "پانامہ"],
-          resultSuggest: [
-            "ارام",
-            "اضافہ",
-            "اسلم",
-            "ادارہ",
-            "ڈرامہ",
-            "سادہ",
-            "افسانہ",
-            "خسارہ",
-            "اسلام",
-            "سام",
-            "نامہ",
-            "اشارہ",
-            "اگاہ",
-            "پانامہ",
-            "علامہ",
-            "سایہ",
-            "بسمہ",
-            "اسانی",
-            "5سالہ",
-          ],
-          status: "WRONG",
-        },
-      };
+      axios
+        .post(`https://14153.gradio.app/api/predict`, {
+          data: [input],
+        })
+        .then((response) => {
+          var arrObj = response.data.data[0];
+          // console.log(arrObj);
+          var sentObj = JSON.parse(arrObj.replace(/'/g, '"'));
+          // console.log(sentObj);
+          this.inputSen.push(input.split(" "));
+          this.res.push(sentObj);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
 
-      this.res.push(arrObj);
+      // var arrObj = {
+      //   نام: {
+      //     current_word: "نام",
+      //     predicted_word: "معاوضے",
+      //     close_matches: ["کام", "نجم", "نان"],
+      //     resultSuggest: ["کام", "نجم", "فام", "نان"],
+      //     status: "CORRECT",
+      //   },
+      //   اسامہ: {
+      //     current_word: "اسامہ",
+      //     predicted_word: "عرفات",
+      //     close_matches: ["اسلام", "سام", "پانامہ"],
+      //     resultSuggest: [
+      //       "ارام",
+      //       "اضافہ",
+      //       "اسلم",
+      //       "ادارہ",
+      //       "ڈرامہ",
+      //       "سادہ",
+      //       "افسانہ",
+      //       "خسارہ",
+      //       "اسلام",
+      //       "سام",
+      //       "نامہ",
+      //       "اشارہ",
+      //       "اگاہ",
+      //       "پانامہ",
+      //       "علامہ",
+      //       "سایہ",
+      //       "بسمہ",
+      //       "اسانی",
+      //       "5سالہ",
+      //     ],
+      //     status: "WRONG",
+      //   },
+      // };
+
+      // this.res.push(arrObj);
     },
 
     replaceWords(e) {
