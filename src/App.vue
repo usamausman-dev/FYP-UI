@@ -14,7 +14,12 @@
         ></textarea>
 
         <div class="d-grid mt-3 gap-2">
-          <button class="btn btn-primary" type="button" @click="check()">
+          <button
+            class="btn btn-primary"
+            :disabled="isDisabled"
+            type="button"
+            @click="check()"
+          >
             Submit
           </button>
         </div>
@@ -23,7 +28,7 @@
       <div class="col-md-6">
         <p
           class="border h-100 p-3 text"
-          style="font-size: 1rem; text-align: right"
+          style="font-size: 1rem; text-align: right; position: relative"
           id="outputValue"
           v-for="words in inputSen"
           :key="words.id"
@@ -38,7 +43,7 @@
             >
               <div class="dropdown">
                 <button class="dropbtn">
-                  {{ this.res[0][word].current_word + " " }}
+                  {{ " " + this.res[0][word].current_word + " " }}
                 </button>
                 <div class="dropdown-content">
                   <button class="btn" @click="replaceWords">
@@ -55,9 +60,17 @@
             </span>
 
             <span v-else>
-              {{ word + " " }}
+              {{ " " + word + " " }}
             </span>
           </span>
+
+          <button
+            @click="copyTxt()"
+            class="btn btn-primary"
+            style="position: absolute; bottom: 15px; left: 15px"
+          >
+            <i class="fa fa-clone"></i>
+          </button>
         </p>
       </div>
     </div>
@@ -76,6 +89,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      isDisabled: false,
       res: [],
       inputSen: [],
     };
@@ -95,12 +109,26 @@ export default {
       }
     },
 
+    copyTxt() {
+      // var txt = document.getElementById("outputValue").innerText;
+      // console.log("yeh raha text", txt);
+
+      var range = document.createRange();
+      var selection = window.getSelection();
+      range.selectNodeContents(document.getElementById("outputValue"));
+
+      selection.removeAllRanges();
+      selection.addRange(range);
+      document.execCommand("Copy");
+    },
+
     check() {
+      this.isDisabled = true;
       var input = document.getElementById("txtBox2").value;
       // this.inputSen.push(input.split(" "));
 
       axios
-        .post(`https://14153.gradio.app/api/predict`, {
+        .post(`https://56321.gradio.app/api/predict`, {
           data: [input],
         })
         .then((response) => {
