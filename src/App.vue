@@ -10,6 +10,7 @@
           dir="rtl"
           cols="50"
           rows="5"
+          :disabled="isDisabled"
           @keyup="convertLetter($event)"
         ></textarea>
 
@@ -71,6 +72,14 @@
           >
             <i class="fa fa-clone"></i>
           </button>
+
+          <button
+            @click="refreshPage()"
+            class="btn btn-primary"
+            style="position: absolute; bottom: 15px; right: 15px"
+          >
+            <i class="fa fa-refresh"></i>
+          </button>
         </p>
       </div>
     </div>
@@ -109,6 +118,10 @@ export default {
       }
     },
 
+    refreshPage() {
+      window.location.reload();
+    },
+
     copyTxt() {
       // var txt = document.getElementById("outputValue").innerText;
       // console.log("yeh raha text", txt);
@@ -128,7 +141,7 @@ export default {
       // this.inputSen.push(input.split(" "));
 
       axios
-        .post(`https://56321.gradio.app/api/predict`, {
+        .post(`https://46366.gradio.app/api/predict`, {
           data: [input],
         })
         .then((response) => {
