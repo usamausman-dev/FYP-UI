@@ -141,7 +141,7 @@ export default {
       // this.inputSen.push(input.split(" "));
 
       axios
-        .post(`https://46366.gradio.app/api/predict`, {
+        .post(`https://43197.gradio.app/api/predict`, {
           data: [input],
         })
         .then((response) => {
